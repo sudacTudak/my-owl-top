@@ -1,0 +1,46 @@
+.footer {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	padding: 25px 32px;
+	background-color: var(--primary);
+}
+
+.text {
+	color: var(--white);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: calc(22 / 16);
+}
+
+.linksList {
+	display: flex;
+	margin: 0;
+	padding: 0;
+
+	&__item {
+		text-align: center;
+
+		&:not(:last-child) {
+			margin-right: 40px;
+		}
+	}
+
+	&__link {
+		&:hover {
+			color: var(--gray-light);
+		}
+	}
+}
+
+@media (max-width: 940px) {
+	.footer {
+		grid-template-columns: 1fr;
+		gap: 10px 0;
+		justify-content: center;
+
+		&__column {
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
