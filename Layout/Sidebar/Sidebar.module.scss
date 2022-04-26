@@ -1,0 +1,23 @@
+.sidebar {
+	display: grid;
+	align-content: start;
+	padding-top: 34px;
+}
+
+.logo {
+	width: 159px;
+	height: 43px;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	margin-bottom: 20px;
+}
+
+.search {
+	margin-bottom: 30px;
+}
