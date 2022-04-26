@@ -1,0 +1,132 @@
+.hh {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	gap: 0 30px;
+
+	@media (max-width: 1200px) {
+		grid-template-columns: 1fr;
+		gap: 30px 0;
+	}
+}
+
+.hhLabel {
+	color: #3B434E;
+	font-size: 20px;
+	font-weight: 300;
+	line-height: calc(27 / 20);
+	text-align: center;
+
+	@media (max-width: 1200px) {
+		font-size: 16px;
+	}
+}
+
+.hhTotal {
+	padding: 20px 20px 30px;
+}
+
+.hhTotalLabel {
+	margin-bottom: 12px;
+
+	@media (max-width: 1200px) {
+		margin-bottom: 6px;
+	}
+}
+
+.hhCount {
+	color: var(--primary);
+	font-size: 36px;
+	font-weight: 700;
+	line-height: calc(49 / 36);
+	text-align: center;
+
+	@media (max-width: 1200px) {
+		font-size: 28px;
+	}
+}
+
+.hhVacancies {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	padding: 20px;
+
+	@media (max-width: 968px) {
+		grid-template-columns: 1fr;
+		gap: 40px 0;
+	}
+}
+
+.vacancy {
+	position: relative;
+
+	&:not(:last-child) {
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 1px;
+			height: 100%;
+			background-color: var(--gray-light);
+		}
+	}
+
+	@media (max-width: 968px) {
+		&:not(:last-child) {
+			&::after {
+				top: initial;
+				bottom: -25px;
+				left: 50%;
+				width: 50%;
+				height: 1px;
+				transform: translateX(-50%);
+			}
+		}
+	}
+}
+
+.vacancyLabel {
+	margin-bottom: 8px;
+}
+
+.vacancySalary {
+	color: #3B434E;
+	font-size: 26px;
+	font-weight: 700;
+	line-height: calc(35 / 26);
+	text-align: center;
+	margin-bottom: 12px;
+
+	@media (max-width: 1200px) {
+		font-size: 20px;
+		margin-bottom: 6px;
+	}
+}
+
+.vacancyRate {
+	display: grid;
+	grid-template-columns: repeat(3, 20px);
+	gap: 0 10px;
+	justify-content: center;
+}
+
+.star {
+	width: 20px;
+	height: 20px;
+	color: #BBBBBB;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	circle {
+		fill: currentcolor;
+	}
+}
+
+.starFilled {
+	color: #FC836D;
+}
