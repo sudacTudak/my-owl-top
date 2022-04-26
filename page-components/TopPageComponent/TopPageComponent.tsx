@@ -1,17 +1,39 @@
 import { Htag, Tag } from "../../components";
 import { TopPageComponentProps } from "./TopPageComponent.props";
 import styles from './TopPageComponent.module.scss';
-import { HhData } from "../../components/HhData/HhData";
-import { Advantages } from "../../components/Advantages/Advantages";
+import { HhData } from "../../components";
+import { Advantages } from "../../components";
 import { TopLevelCategory } from "../../interfaces/page.interface";
+import { SortComponent } from "../../components/Sort/Sort";
+import { SortType } from "../../components/Sort/Sort.props";
+import { useEffect, useReducer } from "react";
+import { sortReducer } from "./sort.reducer";
 
 export const TopPageComponent = ({ firstCategory, page, products }: TopPageComponentProps): JSX.Element => {
+  const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, { products, sort: SortType.Rating });
+
+  function changeSort(type: SortType): void {
+    dispatchSort({ type });
+  }
+
+  useEffect(() => {
+    changeSort(SortType.Rating);
+  }, []);
+
   return (
     <>
       <div className="container">
         <div className={styles.header}>
-          <Htag tag='h1' className={styles.titlePage}>{page.title}</Htag>
-          {products && <Tag color="gray" size="medium">{products.length}</Tag>}
+          <div className={styles.headerLeft}>
+            <Htag tag='h1' className={styles.titlePage}>{page.title}</Htag>
+            {products && <Tag color="gray" size="medium">{products.length}</Tag>}
+          </div>
+          <div className={styles.headerRight}>
+            <SortComponent currentSort={sort} setSort={changeSort}/>
+          </div>
+        </div>
+        <div>
+          {sortedProducts && sortedProducts.map(product => <div key={product._id}>{product.title}</div>)}
         </div>
         {firstCategory === TopLevelCategory.Courses && page.hh && <section className={styles.hh}>
           <div className={styles.hhHeader}>

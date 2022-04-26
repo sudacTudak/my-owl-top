@@ -1,0 +1,52 @@
+.sort {
+	display: flex;
+	align-items: center;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	padding: 0;
+	transition: color var(--transition-time) ease-in-out;
+	border: none;
+	background-color: transparent;
+	color: var(--black);
+	cursor: pointer;
+
+	svg {
+		visibility: hidden;
+		width: 0px;
+		height: 13px;
+		transition:
+			width var(--transition-time) ease-in-out,
+			visibility var(--transition-time) ease-in-out,
+			margin-right var(--transition-time) ease-in-out,
+			opacity var(--transition-time) ease-in-out;
+		opacity: 0;
+		fill: currentcolor;
+	}
+
+	&:not(:last-child) {
+		margin-right: 43px;
+	}
+}
+
+.label {
+	font-size: 16px;
+	line-height: calc(22 / 16);
+}
+
+.active {
+	color: var(--primary);
+
+	svg {
+		visibility: visible;
+		width: 20px;
+		margin-right: 8px;
+		opacity: 1;
+	}
+
+	.label {
+		font-weight: 700;
+	}
+}
