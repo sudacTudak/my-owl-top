@@ -4,7 +4,7 @@ import styles from './TopPageComponent.module.scss';
 import { HhData } from "../../components";
 import { Advantages } from "../../components";
 import { TopLevelCategory } from "../../interfaces/page.interface";
-import { SortComponent } from "../../components/Sort/Sort";
+import { Sort } from "../../components";
 import { SortType } from "../../components/Sort/Sort.props";
 import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
@@ -29,7 +29,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
             {products && <Tag color="gray" size="medium">{products.length}</Tag>}
           </div>
           <div className={styles.headerRight}>
-            <SortComponent currentSort={sort} setSort={changeSort}/>
+            <Sort currentSort={sort} setSort={changeSort}/>
           </div>
         </div>
         <div>

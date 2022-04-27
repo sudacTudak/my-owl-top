@@ -3,7 +3,7 @@ import cn from "classnames";
 import styles from './Sort.module.scss';
 import SortIcon from './sort.svg';
 
-export const SortComponent = ({ currentSort, setSort, className, ...props }: SortProps): JSX.Element => {
+export const Sort = ({ currentSort, setSort, className, ...props }: SortProps): JSX.Element => {
   return (
     <div className={cn(className, styles.sort)} {...props}>
       <button
