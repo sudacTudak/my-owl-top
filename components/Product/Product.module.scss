@@ -1,0 +1,517 @@
+.product {
+	display: grid;
+	grid-template-columns: [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratingstart] auto [end];
+	padding: 30px 30px 20px;
+
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+}
+
+.logo {
+	grid-column: start / logoend;
+	grid-row: 1 / span 2;
+
+	img {
+		max-width: 100%;
+	}
+}
+
+.title {
+	grid-column: titlestart / middle;
+	align-self: flex-end;
+	padding-right: 20px;
+}
+
+.price,
+.priceLabel {
+	grid-column: pricestart / priceend;
+}
+
+.credit,
+.creditLabel {
+	grid-column: creditstart / creditend;
+}
+
+.rating,
+.ratingLabel {
+	grid-column: ratingstart / end;
+}
+
+.tags {
+	display: flex;
+	grid-column: titlestart / middle;
+	flex-wrap: wrap;
+	margin: -2.5px;
+	padding-top: 5px;
+}
+
+.tag {
+	padding: 2.5px;
+}
+
+.divider,
+.description,
+.actions {
+	grid-column: start / end;
+}
+
+.characteristics {
+	grid-column: start / middle;
+}
+
+.features {
+	grid-column: middle / end;
+}
+
+.currentPrice,
+.credit {
+	font-size: 20px;
+	line-height: 1;
+}
+
+.month {
+	font-size: 14px;
+	line-height: calc(19 / 14);
+}
+
+.ratingLabel,
+.priceLabel,
+.creditLabel {
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 19px;
+}
+
+.price,
+.credit,
+.rating {
+	display: flex;
+	align-items: flex-end;
+}
+
+.price {
+	flex-wrap: wrap-reverse;
+	align-items: end;
+	align-self: flex-end;
+}
+
+.discount {
+	margin-left: 8px;
+}
+
+.description {
+	margin-bottom: 14px;
+}
+
+.characteristics {
+	padding-right: 60px;
+}
+
+.characteristic {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 0 15px;
+	align-items: flex-end;
+
+	&:not(:last-child) {
+		margin-bottom: 10px;
+	}
+}
+
+.characteristicName {
+	font-size: 16px;
+	font-weight: 700;
+	line-height: calc(22 / 16);
+}
+
+.characteristicDots {
+	margin-bottom: 6px;
+	border-bottom: 1px dashed var(--gray-light);
+}
+
+.characteristicValue {
+	font-size: 16px;
+	font-weight: 500;
+	line-height: calc(22 / 16);
+}
+
+.feature {
+	padding-left: 15px;
+	font-size: 16px;
+	line-height: calc(22 / 16);
+}
+
+.featureTitle {
+	margin-bottom: 5px;
+	font-weight: 700;
+}
+
+.featureText {
+	margin: 0;
+	padding: 0;
+}
+
+.feature {
+	position: relative;
+
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 3px;
+		height: 100%;
+		border-radius: 2px;
+	}
+}
+
+.advantages {
+	&::before {
+		background-color: var(--green);
+	}
+}
+
+.disadvantages {
+	&::before {
+		background-color: var(--salmon);
+	}
+}
+
+.btnReviews {
+	margin-left: 20px;
+}
+
+@media screen and (max-width: 1330px) {
+	.discount {
+		margin-bottom: 5px;
+		margin-left: 0;
+	}
+
+	.price {
+		flex-direction: column-reverse;
+		align-items: center;
+	}
+
+	.title {
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.product {
+		grid-template-areas:
+			"logo . title title title title title"
+			"logo . tags tags tags tags tags"
+			"price price price . credit . rating"
+			"priceLabel priceLabel priceLabel . creditLabel . ratingLabel"
+			"divider1 divider1 divider1 divider1 divider1 divider1 divider1"
+			"description description description description description description description"
+			"characteristics characteristics characteristics characteristics characteristics characteristics characteristics"
+			"features features features features features features features"
+			"divider2 divider2 divider2 divider2 divider2 divider2 divider2"
+			"actions actions actions actions actions actions actions";
+		grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
+	}
+
+	.logo {
+		grid-area: logo;
+	}
+
+	.title {
+		grid-area: title;
+	}
+
+	.tags {
+		grid-area: tags;
+		margin-bottom: 30px;
+	}
+
+	.price {
+		grid-area: price;
+		flex-direction: row;
+	}
+
+	.credit {
+		grid-area: credit;
+	}
+
+	.rating {
+		grid-area: rating;
+	}
+
+	.priceLabel {
+		grid-area: priceLabel;
+	}
+
+	.creditLabel {
+		grid-area: creditLabel;
+	}
+
+	.ratingLabel {
+		grid-area: ratingLabel;
+	}
+
+	.dividerFirst {
+		grid-area: divider1;
+	}
+
+	.description {
+		grid-area: description;
+	}
+
+	.characteristics {
+		grid-area: characteristics;
+	}
+
+	.features {
+		grid-area: features;
+		margin-top: 30px;
+	}
+
+	.dividerSecond {
+		grid-area: divider2;
+	}
+
+	.actions {
+		grid-area: actions;
+	}
+
+	.discount {
+		margin-bottom: 0;
+		margin-left: 7px;
+	}
+}
+
+@media screen and (max-width: 920px) {
+	.product {
+		grid-template-areas:
+			"logo . title"
+			"logo . tags"
+			"priceLabel . price"
+			"creditLabel . credit"
+			"ratingLabel . rating"
+			"divider1 divider1 divider1"
+			"description description description"
+			"characteristics characteristics characteristics"
+			"features features features"
+			"divider2 divider2 divider2"
+			"actions actions actions";
+		grid-template-columns: 70px 30px 1fr;
+	}
+
+	.logo {
+		grid-area: logo;
+	}
+
+	.title {
+		grid-area: title;
+	}
+
+	.tags {
+		grid-area: tags;
+		margin-bottom: 30px;
+	}
+
+	.price {
+		grid-area: price;
+		flex-direction: row;
+	}
+
+	.credit {
+		grid-area: credit;
+	}
+
+	.rating {
+		grid-area: rating;
+	}
+
+	.priceLabel {
+		grid-area: priceLabel;
+	}
+
+	.creditLabel {
+		grid-area: creditLabel;
+	}
+
+	.ratingLabel {
+		grid-area: ratingLabel;
+	}
+
+	.dividerFirst {
+		grid-area: divider1;
+	}
+
+	.description {
+		grid-area: description;
+	}
+
+	.characteristics {
+		grid-area: characteristics;
+	}
+
+	.features {
+		grid-area: features;
+	}
+
+	.dividerSecond {
+		grid-area: divider2;
+	}
+
+	.actions {
+		grid-area: actions;
+	}
+
+	.discount {
+		margin-bottom: 0;
+		margin-left: 7px;
+	}
+
+	.features {
+		margin-top: 30px;
+	}
+
+	.price,
+	.credit {
+		margin-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.currentPrice,
+	.credit {
+		font-size: 18px;
+	}
+
+	.month {
+		line-height: 1;
+	}
+
+	.product {
+		padding: 10px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.product {
+		grid-template-areas:
+			"logo"
+			"title"
+			"tags"
+			"priceLabel"
+			"price"
+			"creditLabel"
+			"credit"
+			"ratingLabel"
+			"rating"
+			"divider1"
+			"description"
+			"characteristics"
+			"features"
+			"divider2"
+			"actions";
+		grid-template-columns: 1fr;
+
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
+
+	.logo {
+		grid-area: logo;
+		margin-bottom: 5px;
+	}
+
+	.title {
+		grid-area: title;
+	}
+
+	.tags {
+		grid-area: tags;
+		margin-bottom: 10px;
+	}
+
+	.price {
+		grid-area: price;
+	}
+
+	.credit {
+		grid-area: credit;
+	}
+
+	.rating {
+		grid-area: rating;
+	}
+
+	.priceLabel {
+		grid-area: priceLabel;
+	}
+
+	.creditLabel {
+		grid-area: creditLabel;
+	}
+
+	.ratingLabel {
+		grid-area: ratingLabel;
+	}
+
+	.priceLabel,
+	.creditLabel,
+	.ratingLabel {
+		margin-bottom: 5px;
+	}
+
+	.dividerFirst {
+		grid-area: divider1;
+	}
+
+	.description {
+		grid-area: description;
+	}
+
+	.characteristics {
+		grid-area: characteristics;
+	}
+
+	.features {
+		grid-area: features;
+		margin-top: 15px;
+	}
+
+	.dividerSecond {
+		grid-area: divider2;
+	}
+
+	.actions {
+		display: flex;
+		grid-area: actions;
+		flex-direction: column;
+		align-items: flex-end;
+	}
+
+	.characteristics {
+		padding-right: 0;
+	}
+
+	.characteristic {
+		display: block;
+	}
+
+	.characteristicDots {
+		display: none;
+	}
+
+	.feature {
+		&:not(:last-child) {
+			margin-bottom: 10px;
+		}
+	}
+
+	.btnReviews {
+		margin-top: 5px;
+	}
+}

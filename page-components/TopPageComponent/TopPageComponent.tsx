@@ -8,6 +8,7 @@ import { Sort } from "../../components";
 import { SortType } from "../../components/Sort/Sort.props";
 import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
+import { Product } from "../../components/Product/Product";
 
 export const TopPageComponent = ({ firstCategory, page, products }: TopPageComponentProps): JSX.Element => {
   const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, { products, sort: SortType.Rating });
@@ -33,7 +34,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
           </div>
         </div>
         <div>
-          {sortedProducts && sortedProducts.map(product => <div key={product._id}>{product.title}</div>)}
+          {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product}/>)}
         </div>
         {firstCategory === TopLevelCategory.Courses && page.hh && <section className={styles.hh}>
           <div className={styles.hhHeader}>
