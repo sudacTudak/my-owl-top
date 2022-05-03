@@ -5,6 +5,7 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import styles from './Layout.module.scss';
 import { FunctionComponent, useContext } from "react";
 import { AppContext, AppContextProvider, IAppContext } from "../context/app.context";
+import { GoUp } from "../components/GoUpBtn/GoUp";
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
@@ -15,6 +16,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
         {children}
       </main>
       <Footer className={styles.footer}/>
+      <GoUp/>
     </div>
   );
 };
