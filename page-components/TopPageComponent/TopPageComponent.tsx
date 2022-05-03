@@ -18,8 +18,8 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
   }
 
   useEffect(() => {
-    changeSort(SortType.Rating);
-  }, []);
+    dispatchSort( {type: 'reset', initialProducts: products} );
+  }, [products]);
 
   return (
     <>
@@ -34,7 +34,9 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
           </div>
         </div>
         <div>
-          {sortedProducts && sortedProducts.map(product => <Product key={product._id} product={product}/>)}
+          {sortedProducts && sortedProducts.map(product => (
+            <Product layout key={product._id} className={styles.product} product={product} />
+          ))}
         </div>
         {firstCategory === TopLevelCategory.Courses && page.hh && <section className={styles.hh}>
           <div className={styles.hhHeader}>
@@ -49,7 +51,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
           <Advantages advantages={page.advantages}/>
         </section>}
         {page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={ {__html: page.seoText} }/>}
-        <section className={styles.skills}>
+        <section className={styles.skills} style={{display: 'none'}}>
           <Htag tag='h2' className={styles.titleSkills}>Получаемые навыки</Htag>
           <ul className={styles.skillsList}>
             {page.tags.map(tag => (

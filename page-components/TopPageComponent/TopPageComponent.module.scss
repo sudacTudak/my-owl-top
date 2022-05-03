@@ -76,3 +76,17 @@
 .skillsItem {
 	padding: 0 5px;
 }
+
+.product {
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.product {
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
+}

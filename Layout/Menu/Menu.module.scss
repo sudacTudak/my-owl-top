@@ -65,26 +65,15 @@
 	cursor: pointer;
 }
 
-.thirdLevelBlock {
-	display: none;
-	padding: 13px 0 10px;
-}
-
-.thirdLevelBlockOpened {
-	display: block;
-}
-
 .thirdLevelItem {
-	&:not(:last-child) {
-		margin-bottom: 10px;
-	}
+	overflow: hidden;
 }
 
 .thirdLevelLink {
-	text-transform: none;
 	font-size: 14px;
 	font-weight: 700;
 	line-height: calc(19 / 14);
+	text-transform: none;
 }
 
 .thirdLevelItemActive,

@@ -13,7 +13,7 @@ export interface ReviewModel {
   _id: string;
   name: string;
   title: string;
-  descripton: string;
+  description: string;
   rating: number;
   createdAt: Date;
 }

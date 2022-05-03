@@ -7,6 +7,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { ProductModel } from '../../interfaces/product.interface';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { TopPageComponent } from '../../page-components/TopPageComponent/TopPageComponent';
+import { API } from '../../helpers/api';
 
 interface TopPageProps extends Record<string, unknown>{
   menu: MenuItem[];
@@ -27,13 +28,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   let paths: string[] = [];
 
   for (const item of firstLevelMenu) {
-    const { data: menu } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', {
+    const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
         firstCategory: item.id
     });
 
     paths = paths.concat(menu.flatMap(menuItem => menuItem.pages.map(page => `/${item.route}/${page.alias}`)));
   }
-  console.log(paths);
 
   return {
     paths,
@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
     };
   }
   try {
-    const { data: menu } = await axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', {
+    const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
       firstCategory: firstCategoryItem.id
     });
 
@@ -66,8 +66,8 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
       };
     }
 
-    const { data: page } = await axios.get<TopPageModel>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/byAlias/' + params.alias);
-    const { data: products } = await axios.post<ProductModel[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/product/find', {
+    const { data: page } = await axios.get<TopPageModel>(API.topPage.byAlias + params.alias);
+    const { data: products } = await axios.post<ProductModel[]>(API.product.find, {
       category: page.category,
       limit: 10
     });

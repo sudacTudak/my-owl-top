@@ -7,7 +7,7 @@ import { Button } from "..";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useRouter } from "next/router";
 
-export const Search = ( {className, ...props}: SearchProps): JSX.Element => {
+export const Search = ( {className }: SearchProps): JSX.Element => {
   const [searchState, setSearchState] = useState<string>('');
   const router = useRouter();
 

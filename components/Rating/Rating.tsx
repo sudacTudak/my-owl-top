@@ -2,9 +2,9 @@ import { RatingProps } from "./Rating.props";
 import styles from './Rating.module.scss';
 import cn from "classnames";
 import StarIcon from './star.svg';
-import { useEffect, useState, KeyboardEvent,} from "react";
+import { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef,} from "react";
 
-export const Rating = ({ rating, setRating, isEditable, ...props }: RatingProps): JSX.Element => {
+export const Rating = forwardRef(({ rating, setRating, isEditable, error,  ...props }: RatingProps, ref: ForwardedRef<HTMLUListElement>): JSX.Element => {
   const [ratingArray, setRatingArray] = useState(new Array(5).fill(<></>));
 
   useEffect( () => {
@@ -19,6 +19,7 @@ export const Rating = ({ rating, setRating, isEditable, ...props }: RatingProps)
             [styles.filled]: i < currentRating,
             [styles.editable]: isEditable
           })}
+          type='button'
           onClick={(): void => changeRating(i + 1)}
           onMouseEnter={(): void => changeDisplay(i + 1)}
           onKeyDown={(e: KeyboardEvent<HTMLButtonElement>): void => handleSpace(i + 1, e)}
@@ -56,12 +57,18 @@ export const Rating = ({ rating, setRating, isEditable, ...props }: RatingProps)
   }
 
   return (
-    <ul
-      className={styles.list}
-      onMouseLeave={(): void => {changeDisplay(rating);}}
-      {...props}
-    >
-      {ratingArray.map( (r, i) => (<li className={styles.listItem} key={i}>{r}</li>))}
-    </ul>
+    <div className={styles.ratingWrapper}>
+      <ul
+        className={cn(styles.list, {
+          [styles.error]: error,
+        })}
+        onMouseLeave={(): void => {changeDisplay(rating);}}
+        ref={ref}
+        {...props}
+      >
+        {ratingArray.map( (r, i) => (<li className={styles.listItem} key={i}>{r}</li>))}
+      </ul>
+      {error && <span className={styles.errorMessage}>{error.message}</span>}
+    </div>
   );
-};
+});

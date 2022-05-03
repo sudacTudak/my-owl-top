@@ -1,7 +1,7 @@
 import { SortType } from '../../components/Sort/Sort.props';
 import { ProductModel } from '../../interfaces/product.interface';
 
-export type SortActions = { type: SortType.Price } | { type: SortType.Rating};
+export type SortActions = { type: SortType.Price } | { type: SortType.Rating} | {type: 'reset', initialProducts: ProductModel[]};
 
 export interface SortReducerState {
   sort: SortType;
@@ -19,6 +19,11 @@ export const sortReducer = (state: SortReducerState, action: SortActions): SortR
       return {
         sort: SortType.Price,
         products: state.products.sort( (a, b) => a.price - b.price)
+      };
+    case 'reset':
+      return {
+        sort: SortType.Rating,
+        products: action.initialProducts
       };
     default:
       throw new Error('Неверный тип сортировки');

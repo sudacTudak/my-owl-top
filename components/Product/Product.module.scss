@@ -2,10 +2,6 @@
 	display: grid;
 	grid-template-columns: [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratingstart] auto [end];
 	padding: 30px 30px 20px;
-
-	&:not(:last-child) {
-		margin-bottom: 30px;
-	}
 }
 
 .logo {
@@ -184,6 +180,14 @@
 
 .btnReviews {
 	margin-left: 20px;
+}
+
+.reviews {
+	padding: 30px 30px 20px;
+}
+
+.reviewsWrap {
+	overflow: hidden;
 }
 
 @media screen and (max-width: 1330px) {
@@ -415,10 +419,6 @@
 			"divider2"
 			"actions";
 		grid-template-columns: 1fr;
-
-		&:not(:last-child) {
-			margin-bottom: 20px;
-		}
 	}
 
 	.logo {
@@ -513,5 +513,9 @@
 
 	.btnReviews {
 		margin-top: 5px;
+	}
+
+	.reviews {
+		padding: 15px;
 	}
 }
