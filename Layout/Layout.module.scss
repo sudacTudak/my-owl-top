@@ -22,10 +22,30 @@
 .main {
 	grid-area: main;
 	padding: 40px 0 50px;
+	outline: none;
 }
 
 .footer {
 	grid-area: footer;
+}
+
+.skipLink {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 130px;
+	height: 0;
+	overflow: hidden;
+	border-radius: var(--bord-rad-main);
+	background-color: var(--primary);
+	color: var(--white);
+	font-size: 0;
+
+	&.displayed {
+		height: auto;
+		padding: 5px;
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 768px) {
