@@ -1,0 +1,35 @@
+.header {
+	display: none;
+}
+
+.menuWrap {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 20px 10px;
+	overflow-y: auto;
+	background-color: var(--bg-main);
+}
+
+.menuContent {
+	padding-top: 0;
+}
+
+.btnClose {
+	position: fixed;
+	z-index: 11;
+	top: 17px;
+	right: 17px;
+}
+
+@media screen and (max-width: 768px) {
+	.header {
+		display: grid;
+		grid-template-columns: 1fr 40px;
+		gap: 20px;
+		padding: 17px;
+	}
+}

@@ -12,7 +12,6 @@
 }
 
 .header {
-	display: none;
 	grid-area: header;
 }
 
@@ -40,9 +39,5 @@
 
 	.sidebar {
 		display: none;
-	}
-
-	.header {
-		display: block;
 	}
 }
