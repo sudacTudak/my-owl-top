@@ -10,13 +10,14 @@ import { Button } from '../Button/Button';
 import { declOfNum, normalizePriceRu } from '../../helpers/helpers';
 import { Htag } from '../HTag/Htag';
 import Image from 'next/image';
-import { ForwardedRef, forwardRef, useState } from 'react';
+import { ForwardedRef, forwardRef, useRef, useState } from 'react';
 import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
 import { motion } from 'framer-motion';
 
 export const Product = motion(forwardRef(({product, className, ...props}: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
   const [reviewOpened, setReviewOpened] = useState<boolean>(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
 
   const reviewAnimVars = {
     hidden: {
@@ -28,6 +29,14 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
       height: 'auto',
     }
   };
+
+  function scrollToReview():void {
+    setReviewOpened(true);
+    reviewRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
 
   return (
     <div className={className} ref={ref} {...props}>
@@ -62,7 +71,9 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
         <div className={styles.priceLabel}>цена</div>
         <div className={styles.creditLabel}>в кредит</div>
         <div className={styles.ratingLabel}>
-          {product.reviewCount + ' ' + declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+          <a href="#ref" onClick={scrollToReview}>
+            {product.reviewCount + ' ' + declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+          </a>
         </div>
         <Divider className={cn(styles.divider, styles.dividerFirst)}/>
         <div className={styles.description}>
@@ -108,14 +119,14 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
         animate={reviewOpened ? 'visible' : 'hidden'}
         className={styles.reviewsWrap}
       >
-        <Card color='blue' className={styles.reviews}>
+        <Card color='blue' className={styles.reviews} ref={reviewRef}>
           {product.reviewCount > 0 && product.reviews.map(review => (
             <div key={review._id}>
               <Review review={review}/>
               <Divider/>
             </div>
           ))}
-          <ReviewForm productId={product._id}/>
+          <ReviewForm productId={product._id} />
         </Card>
       </motion.div>
     </div>

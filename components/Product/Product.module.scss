@@ -79,6 +79,16 @@
 	line-height: 19px;
 }
 
+.ratingLabel {
+	a {
+		color: var(--primary);
+
+		&:hover {
+			color: var(--primary-hover);
+		}
+	}
+}
+
 .price,
 .credit,
 .rating {
