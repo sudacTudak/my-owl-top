@@ -3,8 +3,8 @@ import { Footer } from "./Footer/Footer";
 import { Header } from "./Header/Header";
 import { Sidebar } from "./Sidebar/Sidebar";
 import styles from './Layout.module.scss';
-import { FunctionComponent, useContext } from "react";
-import { AppContext, AppContextProvider, IAppContext } from "../context/app.context";
+import { FunctionComponent } from "react";
+import { AppContextProvider, IAppContext } from "../context/app.context";
 import { GoUp } from "../components/GoUpBtn/GoUp";
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {

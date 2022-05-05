@@ -4,12 +4,14 @@ import Logo from '../Logo.svg';
 import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useDisableScroll } from "../../hooks/useDisableScroll";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sidebar } from "../Sidebar/Sidebar";
 import styles from './Header.module.scss';
 
 export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [disableScroll, enableScroll] = useDisableScroll();
   const router = useRouter();
 
   const btnAnimVars = {
@@ -33,6 +35,14 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
       x: 0,
     }
   };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [isMenuOpen]);
 
   useEffect(() => {
     setIsMenuOpen(false);
