@@ -9,6 +9,7 @@ import { SortType } from "../../components/Sort/Sort.props";
 import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import { Product } from "../../components/Product/Product";
+import { declOfNum } from "../../helpers/helpers";
 
 export const TopPageComponent = ({ firstCategory, page, products }: TopPageComponentProps): JSX.Element => {
   const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, { products, sort: SortType.Rating });
@@ -27,7 +28,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             <Htag tag='h1' className={styles.titlePage}>{page.title}</Htag>
-            {products && <Tag color="gray" size="medium">{products.length}</Tag>}
+            {products && <Tag color="gray" size="medium" aria-label={products.length + declOfNum(products.length, ['элемент','элемента','элементов'])}>{products.length}</Tag>}
           </div>
           <div className={styles.headerRight}>
             <Sort currentSort={sort} setSort={changeSort}/>

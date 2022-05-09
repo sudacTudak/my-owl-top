@@ -12,7 +12,7 @@ import axios from 'axios';
 import { API } from '../../helpers/api';
 import { useState } from 'react';
 
-export const ReviewForm = ({ productId, className }: ReviewFormProps): JSX.Element => {
+export const ReviewForm = ({ productId, isOpened, className }: ReviewFormProps): JSX.Element => {
   const {register, control, handleSubmit, reset, formState: { errors }} = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>('');
@@ -50,6 +50,7 @@ export const ReviewForm = ({ productId, className }: ReviewFormProps): JSX.Eleme
           placeholder='Имя'
           className={styles.name}
           error={errors?.name}
+          tabIndex={isOpened ? 0 : -1}
         />
         <Input
           {...register('title', { required: {
@@ -59,6 +60,7 @@ export const ReviewForm = ({ productId, className }: ReviewFormProps): JSX.Eleme
           placeholder='Заголовок отзыва'
           className={styles.title}
           error={errors?.title}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -76,6 +78,7 @@ export const ReviewForm = ({ productId, className }: ReviewFormProps): JSX.Eleme
                 ref={field.ref}
                 setRating={field.onChange}
                 error={errors?.rating}
+                tabIndex={isOpened ? 0 : -1}
               />
             )}
           />
@@ -88,16 +91,22 @@ export const ReviewForm = ({ productId, className }: ReviewFormProps): JSX.Eleme
           placeholder='Текст отзыва'
           className={styles.text}
           error={errors?.description}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.footer}>
-          <Button appearance='primary' className={styles.btn}>Отправить</Button>
+          <Button appearance='primary' className={styles.btn} tabIndex={isOpened ? 0 : -1}>Отправить</Button>
           <span>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
         </div>
       </div>
       {isSuccess && <div className={cn(styles.notification ,styles.success)}>
           <div className={styles.titleNotification}>Отзыв отправлен!</div>
           <span>Спасибо! Ваш отзыв будет опубликован после проверки</span>
-          <button type='submit' className={styles.close} onClick={() => {setIsSuccess(false);}}>
+          <button
+            type='submit'
+            className={styles.close}
+            onClick={() => {setIsSuccess(false);}}
+            tabIndex={isOpened ? 0 : -1}
+          >
             <CloseIcon/>
           </button>
         </div>
