@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import { API } from "../helpers/api";
 import { MenuItem } from "../interfaces/menu.interface";
 import { TopLevelCategory } from "../interfaces/page.interface";
-import { withLayout } from "../Layout/Layout"
+import { withLayout } from "../Layout/Layout";
 
 interface SearchPageProps extends Record<string, unknown> {
   menu: MenuItem[];
