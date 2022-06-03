@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["courses-top.ru"],
+    domains: ["courses-top.ru", "cdn-bucket.hb.bizmrg.com"],
   },
   webpack(config, options) {
     config.module.rules.push({
@@ -30,6 +30,9 @@ const nextConfig = {
     });
 
     return config;
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 };
 

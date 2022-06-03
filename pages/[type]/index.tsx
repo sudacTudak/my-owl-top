@@ -12,6 +12,12 @@ interface TypeProps extends Record<string, unknown> {
   firstCategory: TopLevelCategory;
 }
 
+interface TypePath {
+  params: {
+    type: string
+  }
+}
+
 const Type = ({firstCategory}: TypeProps): JSX.Element => {
   return (
     <>
@@ -23,13 +29,17 @@ const Type = ({firstCategory}: TypeProps): JSX.Element => {
 export default withLayout(Type);
 
 export const getStaticPaths:GetStaticPaths = async () => {
-  let paths: string[] = [];
+  let paths:TypePath[] = [];
 
-  paths = firstLevelMenu.map(item => `/${item.route}`);
+  paths = firstLevelMenu.map(item => ({
+    params: {
+      type: `${item.route}`
+    }
+  }));
 
   return {
     paths,
-    fallback: true
+    fallback: false
   };
 };
 
@@ -47,14 +57,20 @@ export const getStaticProps:GetStaticProps<TypeProps> = async ({ params }: GetSt
     };
   }
 
-  const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
-    firstCategory: firstCategoryItem.id,
-  });
-
-  return {
-    props: {
-      menu,
+  try {
+    const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
       firstCategory: firstCategoryItem.id,
-    }
-  };
+    });
+
+    return {
+      props: {
+        menu,
+        firstCategory: firstCategoryItem.id,
+      }
+    };
+  } catch {
+    return {
+      notFound: true
+    };
+  }
 };

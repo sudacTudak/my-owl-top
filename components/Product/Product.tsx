@@ -41,7 +41,7 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
       <Card className={styles.product}>
         <div className={styles.logo}>
           <Image
-            src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
+            src={/^https?:\/\//i.test(product.image) ? product.image : process.env.NEXT_PUBLIC_DOMAIN + product.image}
             alt={product.title}
             width={70}
             height={70}
@@ -52,17 +52,19 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
         <div className={styles.price}>
           <div className={styles.currentPrice}>
             <span className='visuallyHidden'>Цена: </span>
-            {normalizePriceRu(product.price)}
+            {product.price ? normalizePriceRu(product.price) : 'No info'}
           </div>
-          <Tag color='green' className={styles.discount}>
-            <span className='visuallyHidden'>Величина скидки: </span>
-            {normalizePriceRu(product.price - product.oldPrice)}
-          </Tag>
+          {product.price && (
+            <Tag color='green' className={styles.discount}>
+              <span className='visuallyHidden'>Величина скидки: </span>
+              {normalizePriceRu(product.price - product.oldPrice)}
+            </Tag>
+          )}
         </div>
         <div className={styles.credit}>
           <span className='visuallyHidden'>В кредит:</span>
-          {normalizePriceRu(product.credit)}
-          <span className={styles.month}>/мес</span>
+          {product.credit ? normalizePriceRu(product.credit) : 'No info'}
+          {product.credit && <span className={styles.month}>/мес</span>}
         </div>
         <div className={styles.rating}>
           <span className='visuallyHidden'>Рейтинг: {product.reviewAvg ?? product.initialRating} из 5</span>
@@ -119,7 +121,7 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
             className={cn(styles.btn, styles.btnReviews)}
             appearance='ghost'
             arrow={reviewOpened ? 'down' : 'right'}
-            onClick={() => {setReviewOpened(!reviewOpened);}}
+            onClick={(): void => {setReviewOpened(!reviewOpened);}}
           > Читать отзывы </Button>
         </div>
       </Card>

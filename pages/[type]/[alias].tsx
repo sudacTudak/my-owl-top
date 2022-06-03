@@ -16,6 +16,13 @@ interface TopPageProps extends Record<string, unknown>{
   products: ProductModel[]
 }
 
+interface TopPagePath {
+  params: {
+    type: string,
+    alias: string
+  }
+}
+
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
   return (
     <TopPageComponent firstCategory={firstCategory} page={page} products={products}/>
@@ -25,19 +32,27 @@ function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
 export default withLayout(TopPage);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  let paths: string[] = [];
+  let paths: TopPagePath[] = [];
 
   for (const item of firstLevelMenu) {
     const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
         firstCategory: item.id
     });
 
-    paths = paths.concat(menu.flatMap(menuItem => menuItem.pages.map(page => `/${item.route}/${page.alias}`)));
+    if (!menu) {
+      break;
+    }
+    paths = paths.concat(menu.flatMap(menuItem => menuItem.pages.map(page => ({
+      params: {
+        type: item.route,
+        alias: page.alias
+      }
+    }))));
   }
 
   return {
     paths,
-    fallback: true
+    fallback: false
   };
 };
 
@@ -71,6 +86,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
       category: page.category,
       limit: 10
     });
+
     return {
       props: {
         menu,
