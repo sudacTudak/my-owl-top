@@ -63,8 +63,13 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
         </div>
         <div className={styles.credit}>
           <span className='visuallyHidden'>В кредит:</span>
-          {product.credit ? normalizePriceRu(product.credit) : 'No info'}
-          {product.credit && <span className={styles.month}>/мес</span>}
+          {product.credit ? (
+            <>
+              {normalizePriceRu(product.credit)}
+              <span className={styles.month}>/мес</span>
+            </>
+          ) : 'No info'
+          }
         </div>
         <div className={styles.rating}>
           <span className='visuallyHidden'>Рейтинг: {product.reviewAvg ?? product.initialRating} из 5</span>
