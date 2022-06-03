@@ -13,12 +13,12 @@ export const sortReducer = (state: SortReducerState, action: SortActions): SortR
     case SortType.Rating:
       return {
         sort: SortType.Rating,
-        products: state.products.sort( (a, b) => a.initialRating - b.initialRating)
+        products: state.products.sort( (a, b) => b.initialRating - a.initialRating )
       };
     case SortType.Price:
       return {
         sort: SortType.Price,
-        products: state.products.sort( (a, b) => a.price - b.price)
+        products: state.products.sort( (a, b) => b.price - a.price )
       };
     case 'reset':
       return {
