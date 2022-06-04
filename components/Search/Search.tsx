@@ -27,7 +27,7 @@ export const Search = ( {className }: SearchProps): JSX.Element => {
   }
 
   return (
-    <div className={cn(className, styles.search)}>
+    <form className={cn(className, styles.search)} role='search'>
       <div className={styles.wrapper}>
         <Input
           value={searchState}
@@ -45,6 +45,6 @@ export const Search = ( {className }: SearchProps): JSX.Element => {
           <MagnifierIcon/>
         </Button>
       </div>
-    </div>
+    </form>
   );
 };

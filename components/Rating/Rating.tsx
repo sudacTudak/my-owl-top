@@ -40,6 +40,9 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, error
           onKeyDown={(e: KeyboardEvent<HTMLButtonElement>): void => handleKey (e)}
           tabIndex={computeFocus(rating, i)}
           ref={r => ratingArrayRef.current?.push(r)}
+          aria-valuemin={1}
+          aria-valuenow={rating}
+          aria-valuemax={5}
         >
           <StarIcon/>
         </button>
@@ -99,11 +102,14 @@ export const Rating = forwardRef(({ rating, setRating, isEditable = false, error
         })}
         onMouseLeave={(): void => {changeDisplay(rating);}}
         ref={ref}
+        aria-label={isEditable ? 'Укажите рейтинг' : `Рейтинг: ${rating}`}
+        aria-invalid={!!error}
+        role={isEditable ? 'slider' : ''}
         {...props}
       >
         {ratingArray.map( (r, i) => (<li className={styles.listItem} key={i}>{r}</li>))}
       </ul>
-      {error && <span className={styles.errorMessage}>{error.message}</span>}
+      {error && <span role='alert' className={styles.errorMessage}>{error.message}</span>}
     </div>
   );
 });

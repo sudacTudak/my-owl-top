@@ -140,7 +140,7 @@ export const Menu = (): JSX.Element => {
   }
 
   return (
-    <nav className={styles.menu}>
+    <nav role='navigation' className={styles.menu}>
       {renderFirstLevel(firstCategory)}
     </nav>
   );

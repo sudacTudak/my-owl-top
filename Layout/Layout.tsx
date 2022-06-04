@@ -36,10 +36,10 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       </a>
       <Header className={styles.header}/>
       <Sidebar className={styles.sidebar}/>
-      <main className={styles.main} ref={bodyRef} tabIndex={0}>
+      <main role='main' className={styles.main} ref={bodyRef} tabIndex={0}>
         {children}
       </main>
-      <Footer className={styles.footer}/>
+      <Footer role='contentinfo' className={styles.footer}/>
       <GoUp/>
     </div>
   );
