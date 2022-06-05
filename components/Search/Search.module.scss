@@ -10,8 +10,11 @@
 .input {
 	width: 100%;
 	padding: 4px 12px;
-	outline: none;
-	box-shadow: none;
+
+	input {
+		border: none;
+		box-shadow: none;
+	}
 }
 
 .btn {

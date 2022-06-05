@@ -8,6 +8,7 @@ import { useDisableScroll } from "../../hooks/useDisableScroll";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Sidebar } from "../Sidebar/Sidebar";
 import styles from './Header.module.scss';
+import Link from "next/link";
 
 export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -63,9 +64,11 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
 
   return (
     <header className={cn(className, styles.header)} {...props}>
-      <div className={styles.logo}>
-        <Logo/>
-      </div>
+      <Link href='/'>
+        <a className={styles.logo}>
+          <Logo/>
+        </a>
+      </Link>
       <AnimatePresence initial={false} exitBeforeEnter>
         { isMenuOpen ? (
             <motion.div
