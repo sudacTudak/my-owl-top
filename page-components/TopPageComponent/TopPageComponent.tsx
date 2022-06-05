@@ -34,11 +34,13 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
             <Sort currentSort={sort} setSort={changeSort}/>
           </div>
         </div>
-        <div>
+        <ul className={styles.productsList}>
           {sortedProducts && sortedProducts.map(product => (
-            <Product layout key={product._id} className={styles.product} product={product} />
+            <li key={product._id} className={styles.productsItem}>
+              <Product layout product={product} />
+            </li>
           ))}
-        </div>
+        </ul>
         {firstCategory === TopLevelCategory.Courses && page.hh && <section className={styles.hh}>
           <div className={styles.hhHeader}>
             <Htag tag='h2' className={styles.titleHh}>Вакансии - {page.category}</Htag>

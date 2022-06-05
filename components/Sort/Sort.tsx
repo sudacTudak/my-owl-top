@@ -8,7 +8,6 @@ export const Sort = ({ currentSort, setSort, className, ...props }: SortProps): 
     <div className={cn(className, styles.sort)} {...props}>
       <div id='sort' className={styles.sortTitle}>Сортировка</div>
       <button
-        id='sortRating'
         onClick={() => setSort(SortType.Rating)}
         className={cn(styles.btn, {
           [styles.active]: currentSort === SortType.Rating
@@ -17,10 +16,9 @@ export const Sort = ({ currentSort, setSort, className, ...props }: SortProps): 
         aria-selected={currentSort == SortType.Rating}
       >
         <SortIcon/>
-        <span className={styles.label}>По рейтингу </span>
+        <span id='sortRating' className={styles.label}>По рейтингу </span>
       </button>
       <button
-        id='sortPrice'
         onClick={() => setSort(SortType.Price)}
         className={cn(styles.btn, {
           [styles.active]: currentSort === SortType.Price
@@ -29,7 +27,7 @@ export const Sort = ({ currentSort, setSort, className, ...props }: SortProps): 
         aria-selected={currentSort == SortType.Price}
       >
         <SortIcon/>
-        <span className={styles.label}>По цене </span>
+        <span id='sortPrice' className={styles.label}>По цене </span>
       </button>
     </div>
   );
