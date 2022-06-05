@@ -33,7 +33,8 @@ export const Menu = (): JSX.Element => {
     visible: {
       opacity: 1,
       height: 'auto',
-      marginBottom: 10
+      marginBottom: 10,
+
     },
     hidden: {
       opacity: 0,

@@ -10,9 +10,11 @@ import { useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import { Product } from "../../components/Product/Product";
 import { declOfNum } from "../../helpers/helpers";
+import { useReducedMotion } from "framer-motion";
 
 export const TopPageComponent = ({ firstCategory, page, products }: TopPageComponentProps): JSX.Element => {
   const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, { products, sort: SortType.Rating });
+  const shouldReducedMotion = useReducedMotion();
 
   function changeSort(type: SortType): void {
     dispatchSort({ type });
@@ -37,7 +39,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
         <ul className={styles.productsList}>
           {sortedProducts && sortedProducts.map(product => (
             <li key={product._id} className={styles.productsItem}>
-              <Product layout product={product} />
+              <Product layout={shouldReducedMotion ? false : true} product={product} />
             </li>
           ))}
         </ul>

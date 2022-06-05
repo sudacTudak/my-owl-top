@@ -5,7 +5,7 @@ import { ButtonIcon } from "../../components/ButtonIcon/ButtonIcon";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDisableScroll } from "../../hooks/useDisableScroll";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Sidebar } from "../Sidebar/Sidebar";
 import styles from './Header.module.scss';
 
@@ -13,15 +13,22 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [disableScroll, enableScroll] = useDisableScroll();
   const router = useRouter();
+  const shouldReducedMotion = useReducedMotion();
 
   const btnAnimVars = {
     hidden: {
       scale: 0,
       opacity: 0,
+      transition: {
+        duration: shouldReducedMotion ? 0 : 0.3
+      }
     },
     visible: {
       scale: 1,
       opacity: 1,
+      transition: {
+        duration: shouldReducedMotion ? 0 : 0.3
+      }
     }
   };
 
@@ -29,10 +36,16 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
     closed: {
       opacity: 0,
       x: '100%',
+      transition: {
+        duration: shouldReducedMotion ? 0 : 0.3
+      }
     },
     opened: {
       opacity: 1,
       x: 0,
+      transition: {
+        duration: shouldReducedMotion ? 0 : 0.3
+      }
     }
   };
 
