@@ -1,28 +1,33 @@
-import { SearchProps } from "./Search.props";
+import { ChangeEvent, KeyboardEvent, MouseEvent, useContext, useState } from "react";
+import { useRouter } from "next/router";
 import cn from "classnames";
-import MagnifierIcon from './magnifier.svg';
-import styles from './Search.module.scss';
 import { Input } from "..";
 import { Button } from "..";
-import { ChangeEvent, KeyboardEvent, useState } from "react";
-import { useRouter } from "next/router";
+import { AppContext } from "../../context/app.context";
+import { SearchProps } from "./Search.props";
+import styles from './Search.module.scss';
+import MagnifierIcon from './magnifier.svg';
 
 export const Search = ( {className }: SearchProps): JSX.Element => {
   const [searchState, setSearchState] = useState<string>('');
+  const {firstCategory} = useContext(AppContext);
   const router = useRouter();
 
-  function completeSearch(): void {
+  function completeSearch(e: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLInputElement> | KeyboardEvent<HTMLButtonElement>): void {
+    e.preventDefault();
+
     router.push({
       pathname: '/search',
       query: {
-        q: searchState
+        q: searchState,
+        category: firstCategory,
       }
     });
   }
 
-  function keyHandler(e: KeyboardEvent): void {
+  function keyHandler(e: KeyboardEvent<HTMLInputElement> | KeyboardEvent<HTMLButtonElement>): void {
     if (e.key == 'Enter') {
-      completeSearch();
+      completeSearch(e);
     }
   }
 
@@ -40,6 +45,7 @@ export const Search = ( {className }: SearchProps): JSX.Element => {
           appearance='primary'
           className={styles.btn}
           onClick={completeSearch}
+          onKeyDown={keyHandler}
           aria-label='Искать по сайту'
         >
           <MagnifierIcon/>

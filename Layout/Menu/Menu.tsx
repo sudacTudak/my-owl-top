@@ -1,4 +1,4 @@
-import { useContext, KeyboardEvent, useState } from "react";
+import { useContext, KeyboardEvent, useState, useEffect } from "react";
 import { AppContext } from "../../context/app.context";
 import { FirstLevelMenuItem, PageItem } from "../../interfaces/menu.interface";
 import styles from './Menu.module.scss';
@@ -12,7 +12,12 @@ import { motion } from "framer-motion";
 export const Menu = (): JSX.Element => {
   const {menu, setMenu, firstCategory} = useContext(AppContext);
   const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>();
+  const [isWindow, setIsWindow] = useState<boolean>(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setIsWindow(true);
+  }, []);
 
   const variantsThirdParent = {
     visible: {
@@ -130,14 +135,14 @@ export const Menu = (): JSX.Element => {
             variants={ variantsThirdChildren }
             key={page._id}
             className={cn(styles.thirdLevelItem, {
-              [styles.thirdLevelItemActive]: router.asPath == `/${route}/${page.alias}`
+              [styles.thirdLevelItemActive]: isWindow && router.asPath == `/${route}/${page.alias}`
             })}
           >
             <Link href={`/${route}/${page.alias}`}>
               <a
                 className={styles.thirdLevelLink}
                 tabIndex={isOpened ? 0 : -1}
-                aria-current={router.asPath == `/${route}/${page.alias}` ? 'page' : false}
+                aria-current={isWindow && router.asPath == `/${route}/${page.alias}` ? 'page' : false}
               >
                 {page.category}
               </a>
