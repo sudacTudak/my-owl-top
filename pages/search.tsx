@@ -35,18 +35,18 @@ export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({ 
   const firstCategory = parseInt(query.category);
 
   try {
-    const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
-      firstCategory,
-    });
-
     const { data: searchedPages } = await axios.post<ThirdCategoryItem[]>(API.topPage.textSearch, {
       firstCategory,
       text: query.q
     });
 
-    if (!menu || !searchedPages) {
+    if (!searchedPages) {
       return {
-        notFound: true
+        props: {
+          searchedPages: [],
+          firstCategory,
+          menu: []
+        }
       };
     }
 

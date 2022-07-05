@@ -6,30 +6,29 @@ import { firstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menu.interface";
 import { TopLevelCategory } from "../../interfaces/page.interface";
 import { withLayout } from "../../Layout/Layout";
+import { TypePageComponent } from "../../page-components/TypePageComponent/TypePageComponent";
 
-interface TypeProps extends Record<string, unknown> {
+interface TypePageProps extends Record<string, unknown> {
   menu: MenuItem[];
   firstCategory: TopLevelCategory;
 }
 
-interface TypePath {
+interface TypePagePath {
   params: {
     type: string
   }
 }
 
-const Type = ({firstCategory}: TypeProps): JSX.Element => {
+const TypePage = ({ menu, firstCategory }: TypePageProps): JSX.Element => {
   return (
-    <>
-      category:{firstCategory}
-    </>
+    <TypePageComponent menu={menu} firstCategory={firstCategory}/>
   );
 };
 
-export default withLayout(Type);
+export default withLayout(TypePage);
 
 export const getStaticPaths:GetStaticPaths = async () => {
-  let paths:TypePath[] = [];
+  let paths:TypePagePath[] = [];
 
   paths = firstLevelMenu.map(item => ({
     params: {
@@ -43,7 +42,7 @@ export const getStaticPaths:GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps:GetStaticProps<TypeProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps:GetStaticProps<TypePageProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
     return {
       notFound: true
