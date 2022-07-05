@@ -14,20 +14,17 @@
 }
 
 .advantageLeft {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	margin-right: 40px;
 }
 
 .advantageRight {
-	padding-top: 15px;
+	padding-top: 12px;
 }
 
 .icon {
 	width: 50px;
 	height: 50px;
-	margin-bottom: 17px;
+
 
 	svg {
 		display: block;
@@ -40,6 +37,7 @@
 .line {
 	position: relative;
 	flex-grow: 1;
+	margin-top: 17px;
 
 	&::before {
 		content: "";
@@ -52,6 +50,28 @@
 	}
 }
 
-.title {
-	margin-bottom: 20px;
+.description {
+	margin-top: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+	.advantageLeft {
+		margin-right: 20px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.advantagesItem {
+		&:not(:last-child) {
+			margin-bottom: 15px;
+		}
+	}
+}
+
+@media screen and (max-width: 547px) {
+	.advantagesItem {
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+	}
 }

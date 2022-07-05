@@ -13,11 +13,11 @@ export const Advantages = ({ advantages }: AdvantagesProps): JSX.Element => {
             <div className={styles.icon}>
               <Check/>
             </div>
-            <div className={styles.line}></div>
+            {advantage.description && <div className={styles.line}></div>}
           </div>
           <div className={styles.advantageRight}>
             <Htag tag='h3' className={styles.title}>{advantage.title}</Htag>
-            <Ptag className={styles.description} size='large'>{advantage.description}</Ptag>
+            {advantage.description && <Ptag className={styles.description} size='large'>{advantage.description}</Ptag>}
           </div>
         </div>
       </li>)}
