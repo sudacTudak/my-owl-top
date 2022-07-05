@@ -30,6 +30,10 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
     }
   };
 
+  function goToProduct(): void {
+    window.open(product.link, '_blank');
+  }
+
   function scrollToReview(): void {
     setIsReviewOpened(true);
     reviewRef.current?.scrollIntoView(true);
@@ -39,7 +43,11 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
   return (
     <div className={className} ref={ref} {...props}>
       <Card className={styles.product}>
-        <div className={styles.logo}>
+        <a
+          href={product.link}
+          target="_blank"
+          className={styles.logo}
+        >
           <Image
             src={/^https?:\/\//i.test(product.image) ? product.image : process.env.NEXT_PUBLIC_DOMAIN + product.image}
             alt={product.title}
@@ -47,7 +55,7 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
             height={70}
             layout='fixed'
           />
-        </div>
+        </a>
         <Htag tag='h3' className={styles.title}>{product.title} </Htag>
         <div className={styles.price}>
           <div className={styles.currentPrice}>
@@ -121,7 +129,13 @@ export const Product = motion(forwardRef(({product, className, ...props}: Produc
         }
         <Divider className={cn(styles.divider, styles.dividerSecond)}/>
         <div className={styles.actions}>
-          <Button className={styles.btn} appearance='primary' > Узнать подробнее </Button>
+          <Button
+            className={styles.btn}
+            appearance='primary'
+            onClick={goToProduct}
+          >
+            Узнать подробнее
+          </Button>
           <Button
             className={cn(styles.btn, styles.btnReviews)}
             appearance='ghost'

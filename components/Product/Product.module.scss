@@ -200,17 +200,19 @@
 	overflow: hidden;
 }
 
-@media screen and (max-width: 1330px) {
-	.discount {
-		margin-bottom: 5px;
-		margin-left: 0;
-	}
-
+@media screen and (max-width: 1400px) {
 	.price {
 		flex-direction: column-reverse;
 		align-items: center;
 	}
 
+	.discount {
+		margin-bottom: 5px;
+		margin-left: 0;
+	}
+}
+
+@media screen and (max-width: 1330px) {
 	.title {
 		font-size: 18px;
 	}
