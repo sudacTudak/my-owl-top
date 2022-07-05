@@ -9,12 +9,12 @@ export const Footer = ({className, ...props}: FooterProps): JSX.Element => {
       <div className={styles.footer__column}>
         <span className={cn(styles.text, styles.footer__copyright)}>OwlTop © 2020 - {format(new Date(), 'yyyy')} Все права защищены</span>
       </div>
-      <ul className={cn(styles.footer__column, styles.linksList)}>
-        <li className={styles.linksList__item}>
-          <a href="#" className={cn(styles.text, styles.linksList__link)}>Пользовательское соглашение</a>
+      <ul className={cn(styles.footer__column, styles.linkList)}>
+        <li className={styles.linkList__item}>
+          <a href="#" className={cn(styles.text, styles.linkList__link)}>Пользовательское соглашение</a>
         </li>
-        <li className={styles.linksList__item}>
-          <a href="#" className={cn(styles.text, styles.linksList__link)}>Политика конфиденциальности</a>
+        <li className={styles.linkList__item}>
+          <a href="#" className={cn(styles.text, styles.linkList__link)}>Политика конфиденциальности</a>
         </li>
       </ul>
     </footer>
