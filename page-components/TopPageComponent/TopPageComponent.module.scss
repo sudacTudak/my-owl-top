@@ -69,17 +69,18 @@
 
 .skillsList {
 	display: flex;
-	margin: 0 -5px;
+	flex-wrap: wrap;
+	margin: -5px;
 	padding: 0;
 }
 
 .skillsItem {
-	padding: 0 5px;
+	padding: 5px;
 }
 
 .productsList {
-	padding: 0;
 	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 

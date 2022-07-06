@@ -56,7 +56,7 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
           <Advantages advantages={page.advantages}/>
         </section>}
         {page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={ {__html: page.seoText} }/>}
-        <section className={styles.skills} style={{display: 'none'}}>
+        <section className={styles.skills}>
           <Htag tag='h2' className={styles.titleSkills}>Получаемые навыки</Htag>
           <ul className={styles.skillsList}>
             {page.tags.map(tag => (
