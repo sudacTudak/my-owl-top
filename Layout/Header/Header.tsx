@@ -51,19 +51,23 @@ export const Header = ({className, ...props}: HeaderProps): JSX.Element => {
   };
 
   useEffect(() => {
-    if (isMenuOpen) {
-      disableScroll();
-    } else {
-      enableScroll();
-    }
-  }, [isMenuOpen]);
+      if (isMenuOpen) {
+        disableScroll();
+      } else {
+        setTimeout(() => {
+          enableScroll();
+        }, 300);
+      }
+  }, [isMenuOpen, disableScroll, enableScroll]);
 
   useEffect(() => {
     setIsMenuOpen(false);
   }, [router]);
 
   return (
-    <header className={cn(className, styles.header)} {...props}>
+    <header className={cn(className, styles.header)}
+      {...props}
+    >
       <Link href='/'>
         <a className={styles.logo}>
           <Logo/>

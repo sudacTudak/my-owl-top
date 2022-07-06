@@ -15,14 +15,17 @@ export const Search = ( {className }: SearchProps): JSX.Element => {
 
   function completeSearch(e: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLInputElement> | KeyboardEvent<HTMLButtonElement>): void {
     e.preventDefault();
+    const query = searchState.toLowerCase().trim();
 
-    router.push({
-      pathname: '/search',
-      query: {
-        q: searchState,
-        category: firstCategory,
-      }
-    });
+    if (query) {
+      router.push({
+        pathname: '/search',
+        query: {
+          q: query,
+          category: firstCategory,
+        }
+      });
+    }
   }
 
   function keyHandler(e: KeyboardEvent<HTMLInputElement> | KeyboardEvent<HTMLButtonElement>): void {

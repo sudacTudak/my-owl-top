@@ -28,8 +28,14 @@
 @media screen and (max-width: 768px) {
 	.header {
 		display: grid;
+		position: fixed;
+		z-index: 100;
+		top: 0;
+		left: 0;
 		grid-template-columns: 1fr 40px;
+		width: 100%;
 		gap: 20px;
 		padding: 17px;
+		background-color: var(--white);
 	}
 }
