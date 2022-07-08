@@ -24,6 +24,20 @@
 	}
 }
 
+.arrow {
+	display: inline-block;
+	width: 5.87px;
+	height: 10px;
+	margin-left: 10px;
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
 .ghost {
 	border: 1px solid var(--gray-light);
 	background-color: var(--white);
@@ -41,20 +55,6 @@
 		svg {
 			fill: var(--white);
 		}
-	}
-}
-
-.arrow {
-	display: inline-block;
-	width: 5.87px;
-	height: 10px;
-	margin-left: 10px;
-
-	svg {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
 	}
 }
 

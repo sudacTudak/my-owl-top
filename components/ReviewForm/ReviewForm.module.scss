@@ -45,6 +45,15 @@
 	margin-right: 13px;
 }
 
+.close {
+	position: absolute;
+	top: 5px;
+	right: 0;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
 .notification {
 	position: relative;
 	margin-top: 20px;
@@ -77,15 +86,6 @@
 	font-weight: 700;
 }
 
-.close {
-	position: absolute;
-	top: 5px;
-	right: 0;
-	border: none;
-	background-color: transparent;
-	cursor: pointer;
-}
-
 @media screen and (max-width: 1200px) {
 	.reviewForm {
 		grid-template-columns: [start] 1fr 1fr [end];
@@ -115,7 +115,7 @@
 	}
 
 	.btn {
-		margin-right: 0px;
+		margin-right: 0;
 		margin-bottom: 13px;
 	}
 }

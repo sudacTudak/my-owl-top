@@ -94,16 +94,16 @@
 }
 
 .vacancySalary {
+	margin-bottom: 12px;
 	color: #3B434E;
 	font-size: 26px;
 	font-weight: 700;
 	line-height: calc(35 / 26);
 	text-align: center;
-	margin-bottom: 12px;
 
 	@media (max-width: 1200px) {
-		font-size: 20px;
 		margin-bottom: 6px;
+		font-size: 20px;
 	}
 }
 
@@ -117,7 +117,7 @@
 .star {
 	width: 20px;
 	height: 20px;
-	color: #BBBBBB;
+	color: #BBB;
 
 	svg {
 		display: block;

@@ -16,15 +16,6 @@
 	}
 }
 
-.firstLevelItemActive,
-.firstLevelItem:hover {
-
-	.firstLevelLink {
-		transition: color var(--transition-time) ease-in-out;
-		color: var(--primary);
-	}
-}
-
 .firstLevelLink {
 	display: grid;
 	grid-template-columns: 24px auto;
@@ -38,7 +29,15 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		fill: currentColor;
+		fill: currentcolor;
+	}
+}
+
+.firstLevelItemActive,
+.firstLevelItem:hover {
+	.firstLevelLink {
+		transition: color var(--transition-time) ease-in-out;
+		color: var(--primary);
 	}
 }
 
@@ -84,7 +83,6 @@
 
 .thirdLevelItemActive,
 .thirdLevelItem:hover {
-
 	.thirdLevelLink {
 		transition: color var(--transition-time) ease-in-out;
 		color: var(--primary);

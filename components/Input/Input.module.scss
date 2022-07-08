@@ -8,7 +8,7 @@
 	border: none;
 	border-radius: var(--bord-rad-main);
 	outline-color: var(--primary);
-	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
 	font-family: var(--font-family);
 
 	&::placeholder {

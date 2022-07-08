@@ -15,7 +15,7 @@
 
 	svg {
 		visibility: hidden;
-		width: 0px;
+		width: 0;
 		height: 13px;
 		transition:
 			width var(--transition-time) ease-in-out,

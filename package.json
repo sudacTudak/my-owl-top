@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "debug": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "stylelint": "stylelint \"**/*.css\" --fix"
+    "stylelint": "stylelint \"**/*.scss\" --fix"
   },
   "dependencies": {
     "axios": "^0.26.1",
@@ -29,6 +30,7 @@
     "cross-env": "^7.0.3",
     "eslint": "8.13.0",
     "eslint-plugin-react-hooks": "^4.4.0",
+    "husky": "^8.0.1",
     "sass": "^1.50.1",
     "stylelint": "^14.7.1",
     "stylelint-config-property-sort-order-smacss": "^9.0.0",
