@@ -4,6 +4,7 @@ import { API } from '../helpers/api';
 import { withLayout } from '../Layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 import { HomepageComponent } from '../page-components/HomePageComponent/HomepageComponent';
+import Head from 'next/head';
 
 interface HomeProps extends Record<string, unknown>{
   menu: MenuItem[];
@@ -11,7 +12,12 @@ interface HomeProps extends Record<string, unknown>{
 }
 
 const Home = (): JSX.Element => (
-  <HomepageComponent/>
+  <>
+    <Head>
+      <meta property="og:title" content="My OWL Top - Homepage"/>
+    </Head>
+    <HomepageComponent/>
+  </>
 );
 
 export default withLayout(Home);

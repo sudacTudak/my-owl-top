@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
 import { API } from "../../helpers/api";
 import { firstLevelMenu } from "../../helpers/helpers";
@@ -21,7 +22,13 @@ interface TypePagePath {
 
 const TypePage = ({ menu, firstCategory }: TypePageProps): JSX.Element => {
   return (
-    <TypePageComponent menu={menu} firstCategory={firstCategory}/>
+    <>
+      <Head>
+        <title>{`My OWL Top - ${firstLevelMenu[firstCategory].name}`}</title>
+        <meta property="og:title" content={`My OWL Top - ${firstLevelMenu[firstCategory].name}`}/>
+      </Head>
+      <TypePageComponent menu={menu} firstCategory={firstCategory}/>
+    </>
   );
 };
 

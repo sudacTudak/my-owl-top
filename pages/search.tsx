@@ -1,4 +1,5 @@
 import axios from "axios";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { GetServerSideProps, GetServerSidePropsContext } from "next/types";
 import { ParsedUrlQuery } from "querystring";
@@ -19,7 +20,13 @@ const SearchPage = ({ searchedPages }: SearchPageProps): JSX.Element => {
   const router = useRouter();
 
   return (
-    <SearchPageComponent searchedPages={searchedPages} router={router}/>
+    <>
+      <Head>
+        <title>{router.query.q ? `${router.query.q} - My OWL Top` : 'My OWL Top - Поиск' }</title>
+        <meta property="og:title" content={router.query.q ? `${router.query.q} - My OWL Top` : 'My OWL Top - Поиск' }/>
+      </Head>
+      <SearchPageComponent searchedPages={searchedPages} router={router}/>
+    </>
   );
 };
 
