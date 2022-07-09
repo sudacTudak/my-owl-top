@@ -1,17 +1,11 @@
-import { Button, ThirdCategoryLink } from "../../components";
+import { ThirdCategoryLink, GoBackBtn } from "../../components";
 import { SearchPageComponentProps } from "./SearchPageComponent.props";
 import styles from './SearchPageComponent.module.scss';
 
 export const SearchPageComponent = ({ searchedPages, router }: SearchPageComponentProps): JSX.Element => {
   return (
     <div className="container">
-      <Button
-        appearance='primary'
-        className={styles.goBack}
-        onClick={() => {router.back();}}
-      >
-        Вернуться назад
-      </Button>
+      <GoBackBtn className={styles.goBack}/>
       <div className={styles.resultStr}>
         {
           searchedPages.length > 0
