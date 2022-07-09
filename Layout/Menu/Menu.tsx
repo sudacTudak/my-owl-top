@@ -1,6 +1,6 @@
-import { useContext, KeyboardEvent, useState, useEffect } from "react";
+import { useContext, KeyboardEvent, useState, useEffect, useRef } from "react";
 import { AppContext } from "../../context/app.context";
-import { FirstLevelMenuItem, PageItem } from "../../interfaces/menu.interface";
+import { FirstLevelMenuItem, MenuItem, PageItem } from "../../interfaces/menu.interface";
 import styles from './Menu.module.scss';
 import { TopLevelCategory } from "../../interfaces/page.interface";
 import cn from "classnames";

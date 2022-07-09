@@ -27,4 +27,4 @@ export const ThirdCategoryLink = ({ alias, category, title }: ThirdCategoryLinkP
       </div>
     </Card>
   );
-}
+};
