@@ -6,6 +6,7 @@
 	"plugins": [
 		"stylelint-order"
 	],
+  "customSyntax": "postcss-scss",
 	"rules": {
 		"indentation": [
 			"tab"
