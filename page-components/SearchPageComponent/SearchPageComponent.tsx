@@ -2,7 +2,7 @@ import { ThirdCategoryLink, GoBackBtn } from "../../components";
 import { SearchPageComponentProps } from "./SearchPageComponent.props";
 import styles from './SearchPageComponent.module.scss';
 
-export const SearchPageComponent = ({ searchedPages, router }: SearchPageComponentProps): JSX.Element => {
+export const SearchPageComponent = ({ firstCategory, searchedPages, router }: SearchPageComponentProps): JSX.Element => {
   return (
     <div className="container">
       <GoBackBtn className={styles.goBack}/>
@@ -20,7 +20,7 @@ export const SearchPageComponent = ({ searchedPages, router }: SearchPageCompone
               key={page._id}
               className={styles.searchItem}
             >
-              <ThirdCategoryLink title={page.title} alias={page.alias} category={page.category}/>
+              <ThirdCategoryLink firstCategory={firstCategory} title={page.title} alias={page.alias} category={page.category}/>
             </li>
           ))
         }

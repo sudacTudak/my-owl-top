@@ -16,7 +16,7 @@ interface SearchPageProps extends Record<string, unknown> {
   menu: MenuItem[]
 }
 
-const SearchPage = ({ searchedPages }: SearchPageProps): JSX.Element => {
+const SearchPage = ({ firstCategory, searchedPages }: SearchPageProps): JSX.Element => {
   const router = useRouter();
 
   return (
@@ -25,7 +25,7 @@ const SearchPage = ({ searchedPages }: SearchPageProps): JSX.Element => {
         <title>{router.query.q ? `${router.query.q} - My OWL Top` : 'My OWL Top - Поиск' }</title>
         <meta property="og:title" content={router.query.q ? `${router.query.q} - My OWL Top` : 'My OWL Top - Поиск' }/>
       </Head>
-      <SearchPageComponent searchedPages={searchedPages} router={router}/>
+      <SearchPageComponent firstCategory={firstCategory} searchedPages={searchedPages} router={router}/>
     </>
   );
 };
@@ -40,11 +40,12 @@ export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({ 
   }
 
   const firstCategory = parseInt(query.category);
+  const queryStr = query.q as string;
 
   try {
     const { data: searchedPages } = await axios.post<ThirdCategoryItem[]>(API.topPage.textSearch, {
       firstCategory,
-      text: query.q
+      text: queryStr.toLowerCase()
     });
 
     if (!searchedPages) {

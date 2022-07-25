@@ -1,3 +1,6 @@
+import { TopLevelCategory } from '../../interfaces/page.interface';
 import { ThirdCategoryItem } from '../../interfaces/thirdCategoryLink.interface';
 
-export type ThirdCategoryLinkProps = Omit<ThirdCategoryItem, '_id'>;
+export interface ThirdCategoryLinkProps extends Omit<ThirdCategoryItem, '_id'> {
+  firstCategory: TopLevelCategory;
+}

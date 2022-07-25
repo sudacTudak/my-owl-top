@@ -60,14 +60,17 @@ export const TopPageComponent = ({ firstCategory, page, products }: TopPageCompo
         </section>}
         {page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={ {__html: page.seoText} }/>}
         <section className={styles.skills}>
-          <Htag tag='h2' className={styles.titleSkills}>Получаемые навыки</Htag>
-          <ul className={styles.skillsList}>
-            {page.tags.map(tag => (
-              <li className={styles.skillsItem} key={tag}>
-                <Tag  color='primary'>{tag.toUpperCase()}</Tag>
-              </li>
-            ))}
-          </ul>
+          {page.tags.length > 0 && <>
+            <Htag tag='h2' className={styles.titleSkills}>Получаемые навыки</Htag>
+            <ul className={styles.skillsList}>
+              {page.tags.map(tag => (
+                <li className={styles.skillsItem} key={tag}>
+                  <Tag  color='primary'>{tag.toUpperCase()}</Tag>
+                </li>
+              ))}
+            </ul>
+          </>
+          }
         </section>
       </div>
     </>

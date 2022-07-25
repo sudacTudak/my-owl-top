@@ -105,7 +105,6 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
       category: page.category,
       limit: 10
     });
-
     return {
       props: {
         menu,

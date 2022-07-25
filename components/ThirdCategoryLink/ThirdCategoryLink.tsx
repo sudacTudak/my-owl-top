@@ -4,8 +4,9 @@ import { Tag } from "../Tag/Tag";
 import Link from "next/link";
 import { Htag } from "../HTag/Htag";
 import { Card } from "../Card/Card";
+import { firstLevelMenu } from "../../helpers/helpers";
 
-export const ThirdCategoryLink = ({ alias, category, title }: ThirdCategoryLinkProps): JSX.Element => {
+export const ThirdCategoryLink = ({ firstCategory, alias, category, title }: ThirdCategoryLinkProps): JSX.Element => {
   return (
     <Card color="blue" className={styles.card}>
       <div className={styles.wrapper}>
@@ -20,7 +21,7 @@ export const ThirdCategoryLink = ({ alias, category, title }: ThirdCategoryLinkP
           </Tag>
         </div>
         <div className={styles.subColumn}>
-          <Link href={`/courses/${alias}`}>
+          <Link href={`/${firstLevelMenu[firstCategory].route}/${alias}`}>
             <a className={styles.link}>Перейти</a>
           </Link>
         </div>

@@ -15,7 +15,7 @@ export const Search = ( {className }: SearchProps): JSX.Element => {
 
   function completeSearch(e: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLInputElement> | KeyboardEvent<HTMLButtonElement>): void {
     e.preventDefault();
-    const query = searchState.toLowerCase().trim();
+    const query = searchState.trim();
 
     if (query) {
       router.push({
