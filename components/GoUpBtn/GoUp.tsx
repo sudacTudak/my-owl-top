@@ -30,6 +30,7 @@ export const GoUp = (): JSX.Element => {
       <ButtonIcon
         appearance='primary'
         icon='arrowUp'
+        aria-label="Перейти наверх"
         onClick={scrollToTop}
       />
     </motion.div>
