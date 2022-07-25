@@ -10,7 +10,11 @@ export const GoUp = (): JSX.Element => {
   const controls = useAnimation();
 
   useEffect(() => {
-    controls.start({opacity: scrollY / document.body.scrollHeight});
+    if (scrollY < document.body.scrollHeight / 4 && scrollY < 250) {
+      controls.start({ opacity: 0 });
+    } else {
+      controls.start({ opacity: (scrollY + window.innerHeight + 250) / document.body.scrollHeight });
+    }
   }, [scrollY, controls]);
 
   function scrollToTop(): void {
