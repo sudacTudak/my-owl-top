@@ -1,0 +1,8 @@
+version: "3"
+services:
+  app:
+    image: my-owl-top
+    container_name: my-owl-top
+    restart: always
+    ports:
+      - "3000:3000"
